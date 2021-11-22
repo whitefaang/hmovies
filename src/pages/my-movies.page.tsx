@@ -10,7 +10,7 @@ export default function MyMovies(): ReactElement {
 
   if (myMovies.length === 0) {
     return (
-      <div className="flex flex-col flex-1 gap-y-10 justify-center items-center text-xl">
+      <div className="flex flex-col flex-1 gap-y-10 justify-center items-center lg:text-xl">
         <img
           src={Empty}
           alt="You havent rated any movies yet"

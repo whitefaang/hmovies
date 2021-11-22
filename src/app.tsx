@@ -26,7 +26,7 @@ function App() {
           by
           <a
             href="https://mrahil.me"
-            className="mx-1"
+            className="mx-1.5 text-primary hover:text-primary-muted"
             target="_blank"
             rel="noreferrer"
           >
