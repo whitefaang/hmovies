@@ -52,13 +52,13 @@ export default function Movie(): ReactElement {
         }}
       >
         <div className="py-2 px-4 w-full lg:w-9/12 xl:w-9/12 2xl:w-10/12">
-          <div className="flex justify-between">
-            <span className="w-full lg:w-10/12 font-header text-5xl lg:text-7xl">
+          <div className="flex flex-wrap justify-center">
+            <span className="flex-1 my-2 lg:w-10/12 font-header text-5xl lg:text-7xl">
               {composedMovie.title}
             </span>
-            <span className="hidden lg:flex items-center text-4xl font-bold">
+            <span className="flex justify-center items-center w-full sm:w-max text-3xl font-bold">
               {composedMovie.vote_average}
-              <StarIcon className="w-10 h-10" />
+              <StarIcon className="w-6 lg:w-10 h-6 lg:h-10" />
             </span>
           </div>
           <div className="my-2 lg:text-3xl">
@@ -70,10 +70,10 @@ export default function Movie(): ReactElement {
             <Ratings movie={composedMovie} />
           </div>
 
-          <div className="p-3 mt-3 w-full lg:w-10/12 lg:text-2xl">
+          <div className="p-3 lg:mt-3 w-full lg:w-10/12 lg:text-2xl">
             {composedMovie.overview}
           </div>
-          <div className="p-3 my-2 text-2xl">
+          <div className="p-3 lg:my-2 lg:text-2xl">
             <span className="pr-2">Languages:</span>{' '}
             {composedMovie.spoken_languages
               ?.map((l) => `${l.english_name}`)

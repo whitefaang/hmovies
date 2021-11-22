@@ -36,32 +36,31 @@ export default function Dashboard(): ReactElement {
     )
   }
 
-  if (popular.status === 'loading') {
-    return (
+  return (
+    <>
       <div
-        data-testid="loader"
+        id="dashboard"
         className="grid flex-1 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-7 2xl:gap-10 p-2 py-5 mx-auto w-11/12 md:w-10/12 xl:w-9/12"
       >
-        {Array(5)
-          .fill(1)
-          .map(() => (
-            <div key={nanoid()}>
-              <div className="w-full h-96 bg-surface-muted animate-pulse"></div>
-              <p className="my-2 w-20 h-6 bg-surface-muted animate-pulse"></p>
-            </div>
-          ))}
+        {popular.data.map((movie) => {
+          return <Movie key={movie.id} movie={movie} />
+        })}
       </div>
-    )
-  }
-
-  return (
-    <div
-      id="dashboard"
-      className="grid flex-1 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-7 2xl:gap-10 p-2 py-5 mx-auto w-11/12 md:w-10/12 xl:w-9/12"
-    >
-      {popular.data.map((movie) => {
-        return <Movie key={movie.id} movie={movie} />
-      })}
-    </div>
+      {popular.status === 'loading' && (
+        <div
+          data-testid="loader"
+          className="grid flex-1 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-7 2xl:gap-10 p-2 py-5 mx-auto w-11/12 md:w-10/12 xl:w-9/12"
+        >
+          {Array(8)
+            .fill(1)
+            .map(() => (
+              <div key={nanoid()}>
+                <div className="w-full h-96 bg-surface-muted animate-pulse"></div>
+                <p className="my-2 w-20 h-6 bg-surface-muted animate-pulse"></p>
+              </div>
+            ))}
+        </div>
+      )}
+    </>
   )
 }

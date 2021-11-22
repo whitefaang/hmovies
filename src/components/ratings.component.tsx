@@ -21,8 +21,8 @@ export default function Ratings({ movie }: Props): ReactElement {
 
   const dispatch = useDispatch()
 
-  const rate = () => {
-    dispatch(uiActions.rateMovie({ movie, rating: rated }))
+  const rate = (rating: number) => {
+    dispatch(uiActions.rateMovie({ movie, rating }))
   }
 
   return (
@@ -31,39 +31,31 @@ export default function Ratings({ movie }: Props): ReactElement {
         .fill(1)
         .map((_, idx) =>
           (rated || myRating) > idx ? (
-            <>
+            <React.Fragment key={nanoid()}>
               <StarIcon
-                key={nanoid()}
-                className="lg:block lg:px-3 w-16 h-16 text-primary focus:scale-110 cursor-pointer"
-                onClick={rate}
+                className="hidden lg:block px-3 w-16 h-16 text-primary cursor-pointer"
+                onClick={() => rate(idx + 1)}
                 onMouseEnter={() => setRated(idx + 1)}
                 onMouseLeave={() => setRated(myRating)}
               />
               <StarIcon
-                key={nanoid()}
-                className="lg:hidden w-16 h-16 text-primary focus:scale-110 cursor-pointer"
-                onClick={rate}
-                onMouseEnter={() => setRated(idx + 1)}
-                onMouseLeave={() => setRated(myRating)}
+                className="lg:hidden w-16 h-16 text-primary cursor-pointer"
+                onClick={() => rate(idx + 1)}
               />
-            </>
+            </React.Fragment>
           ) : (
-            <>
+            <React.Fragment key={nanoid()}>
               <StarOutline
-                key={nanoid()}
-                className="hidden lg:block px-3 w-16 h-16 focus:scale-110 cursor-pointer"
-                onClick={rate}
+                className="hidden lg:block px-3 w-16 h-16 cursor-pointer"
+                onClick={() => rate(idx + 1)}
                 onMouseEnter={() => setRated(idx + 1)}
                 onMouseLeave={() => setRated(myRating)}
               />
               <StarOutline
-                key={nanoid()}
-                className="lg:hidden w-16 h-16 focus:scale-110 cursor-pointer"
-                onClick={rate}
-                onMouseEnter={() => setRated(idx + 1)}
-                onMouseLeave={() => setRated(myRating)}
+                className="lg:hidden w-16 h-16 cursor-pointer"
+                onClick={() => rate(idx + 1)}
               />
-            </>
+            </React.Fragment>
           )
         )}{' '}
     </div>
