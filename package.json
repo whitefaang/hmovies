@@ -12,7 +12,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview",
-    "test": "jest src/pages/dashboard.spec.tsx",
+    "test": "jest",
     "lint": "eslint src --max-warnings=0"
   },
   "dependencies": {
@@ -24,7 +24,8 @@
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.0.2",
-    "styled-components": "^5.3.3"
+    "styled-components": "^5.3.3",
+    "vite-plugin-react-svg": "^0.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
@@ -54,12 +55,15 @@
     "eslint-plugin-tailwindcss": "^1.17.1",
     "faker": "^5.5.3",
     "jest": "^27.3.1",
+    "jest-svg-transformer": "^1.0.0",
+    "jest-transform-stub": "^2.0.0",
     "postcss": "^8.3.11",
     "prettier": "2.4.1",
     "regenerator-runtime": "^0.13.9",
     "tailwindcss": "^2.2.19",
     "tailwindcss-debug-screens": "^2.2.0",
     "tailwindcss-tooltip-arrow-after": "^1.0.0",
+    "ts-jest": "^27.0.7",
     "typescript": "^4.4.4",
     "vite": "^2.6.14",
     "vite-tsconfig-paths": "^3.3.17"

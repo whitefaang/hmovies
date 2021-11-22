@@ -1,18 +1,22 @@
 import { act, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import faker from 'faker'
+import { useImageFetch } from 'hooks/fetch.hook'
 import useMovieTopRated from 'hooks/movie-top-rated.hook'
 import { IMovie } from 'models/api.model'
+import { useNavigate } from 'react-router'
 import Movie from './movie.component'
+import UnknownMovie from './unknown.svg'
 
 jest.mock('react-router')
 
 jest.mock('hooks/movie-top-rated.hook')
+jest.mock('../hooks/fetch.hook')
 
 describe('<Movie />', () => {
   let mockRender: any
-  const to = jest.fn()
-  const fakeData: IMovie = {
+  let movie: IMovie
+  const fakeData = () => ({
     backdrop_path: faker.image.people(),
     poster_path: faker.image.people(),
     title: faker.name.firstName(),
@@ -31,33 +35,34 @@ describe('<Movie />', () => {
     // video: faker.image.imageUrl()
     id: 1,
     original_title: faker.name.firstName()
-  }
+  })
+
+  const navigate = jest.fn()
   beforeEach(() => {
-    mockRender = () => render(<Movie movie={fakeData} />)
+    movie = fakeData()
+    mockRender = () => render(<Movie movie={movie} />)
+    ;(useNavigate as any).mockImplementation(() => navigate)
+    ;(useImageFetch as any).mockImplementation(() => ({
+      image: faker.image.animals()
+    }))
   })
 
   it('should show movie block', () => {
     mockRender()
-    expect(screen.getByTitle(fakeData.title)).toBeInTheDocument()
-  })
-
-  it('should show movie with an empty poster as thumbnail', () => {
-    fakeData.poster_path = ''
-    mockRender()
-    expect(screen.getByAltText(fakeData.title)).toHaveAttribute(
-      'src',
-      '/empty-poster.png'
-    )
+    const movieTitle = `${movie.title} (${movie.release_date.split('-')[0]})`
+    expect(screen.getByTitle(movieTitle)).toBeInTheDocument()
   })
 
   it('should open a movie details overlay', async () => {
     ;(useMovieTopRated as any).mockImplementation(() => fakeData)
     mockRender()
     await act(async () => {
-      userEvent.click(screen.getByTitle(fakeData.title))
+      const movieTitle = `${movie.title} (${movie.release_date.split('-')[0]})`
+      userEvent.click(screen.getByTitle(movieTitle))
     })
-    screen.getByTitle(fakeData.title || '').click()
-    expect(to).toHaveBeenCalledTimes(1)
-    expect(to).toHaveBeenCalledWith(`/${fakeData.id}`)
+    expect(navigate).toHaveBeenCalledTimes(1)
+    expect(navigate).toHaveBeenCalledWith(`/${movie.id}`, {
+      state: movie
+    })
   })
 })

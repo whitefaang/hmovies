@@ -33,7 +33,7 @@ export default function Ratings({ movie }: Props): ReactElement {
           (rated || myRating) > idx ? (
             <StarIcon
               key={nanoid()}
-              className="px-3 w-16 h-16 text-primary focus:scale-110 cursor-pointer"
+              className="lg:px-3 w-16 h-16 text-primary focus:scale-110 cursor-pointer"
               onClick={rate}
               onMouseEnter={() => setRated(idx + 1)}
               onMouseLeave={() => setRated(myRating)}
@@ -41,7 +41,7 @@ export default function Ratings({ movie }: Props): ReactElement {
           ) : (
             <StarOutline
               key={nanoid()}
-              className="px-3 w-16 h-16 focus:scale-110 cursor-pointer"
+              className="lg:px-3 w-16 h-16 focus:scale-110 cursor-pointer"
               onClick={rate}
               onMouseEnter={() => setRated(idx + 1)}
               onMouseLeave={() => setRated(myRating)}

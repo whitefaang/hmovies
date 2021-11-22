@@ -13,28 +13,29 @@ jest.mock('../hooks/movie-top-rated.hook')
 jest.mock('../hooks/fetch.hook')
 
 const fakeData = () => ({
-  data: new Array(20).fill(1).map(
-    (): IMovie => ({
-      backdrop_path: faker.image.people(),
-      poster_path: faker.image.people(),
-      title: faker.name.firstName(),
-      popularity: faker.datatype.number({
-        max: 5,
-        min: 0
-      }),
-      vote_average: faker.datatype.number({
-        max: 5,
-        min: 0
-      }),
-      vote_count: faker.datatype.number(),
-      original_language: faker.name.lastName(),
-      release_date: faker.date.past().toString(),
-      overview: faker.lorem.paragraphs(),
-      id: parseInt(faker.datatype.uuid()),
-      original_title: faker.name.firstName()
-      // video: faker.image.imageUrl()
-    })
-  ),
+  data: (() =>
+    new Array(20).fill(1).map(
+      (): IMovie => ({
+        backdrop_path: faker.image.people(),
+        poster_path: faker.image.people(),
+        title: faker.name.firstName(),
+        popularity: faker.datatype.number({
+          max: 5,
+          min: 0
+        }),
+        vote_average: faker.datatype.number({
+          max: 5,
+          min: 0
+        }),
+        vote_count: faker.datatype.number(),
+        original_language: faker.name.lastName(),
+        release_date: faker.date.past().toString(),
+        overview: faker.lorem.paragraphs(),
+        id: faker.datatype.uuid() as any,
+        original_title: faker.name.firstName()
+        // video: faker.image.imageUrl()
+      })
+    ))(),
   status: 'success',
   pageInfo: {
     page: 1,
@@ -56,19 +57,15 @@ describe('<Dashboard />', () => {
 
   it('should show list of movies', () => {
     const res1 = fakeData()
-    const res2 = fakeData()
-    const next = jest.fn().mockImplementation(() => res2)
-    ;(useMovieTopRated as any).mockImplementation(() => ({ ...res1, next }))
+    // const res2 = fakeData()
+    // const next = jest.fn().mockImplementation(() => res2)
+    ;(useMovieTopRated as any).mockImplementation(() => ({ ...res1 }))
     mockRender()
     res1.data.forEach((r) => {
-      const movie = screen.getByTitle(r.title || '')
+      const movieTitle = `${r.title} (${r.release_date.split('-')[0]})`
+      const movie = screen.getByTitle(movieTitle)
       expect(movie).toBeInTheDocument()
     })
-    // window.scrollTo(0, document.body.scrollHeight)
-    // res1.data.concat(res2.data).forEach((r) => {
-    //   const movie = screen.getByTitle(r.title || '')
-    //   expect(movie).toBeInTheDocument()
-    // })
   })
 
   it('should show failure to load movies', () => {
@@ -92,7 +89,8 @@ describe('<Dashboard />', () => {
     mockRender()
     const movie = res.data[0]
     await act(async () => {
-      userEvent.click(screen.getByTitle(movie.title))
+      const movieTitle = `${movie.title} (${movie.release_date.split('-')[0]})`
+      userEvent.click(screen.getByTitle(movieTitle))
     })
     expect(navigate).toHaveBeenCalledTimes(1)
     expect(navigate).toHaveBeenCalledWith(`/${movie.id}`, { state: movie })

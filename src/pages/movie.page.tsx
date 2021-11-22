@@ -61,7 +61,7 @@ export default function Movie(): ReactElement {
               <StarIcon className="w-10 h-10" />
             </span>
           </div>
-          <div className="my-2 text-3xl">
+          <div className="my-2 lg:text-3xl">
             {composedMovie.original_title}{' '}
             {composedMovie.tagline ? ',' + composedMovie.tagline : ''}
           </div>
@@ -70,7 +70,7 @@ export default function Movie(): ReactElement {
             <Ratings movie={composedMovie} />
           </div>
 
-          <div className="p-3 mt-3 w-full lg:w-10/12 text-2xl">
+          <div className="p-3 mt-3 w-full lg:w-10/12 lg:text-2xl">
             {composedMovie.overview}
           </div>
           <div className="p-3 my-2 text-2xl">

@@ -44,10 +44,12 @@ export default function Movie({ movie, className = '' }: Props): ReactElement {
     }
   }, [])
 
+  const movieTitle = `${movie.title} (${movie.release_date.split('-')[0]})`
+
   return (
     <div
       ref={ref}
-      title={movie.title}
+      title={movieTitle}
       className={classNames(
         'rounded-xl shadow-2xl cursor-pointer hover:shadow-3xl',
         className
@@ -86,13 +88,11 @@ export default function Movie({ movie, className = '' }: Props): ReactElement {
       </Transition>
 
       <LazyImage
-        className="min-h-[300px]"
+        className="lg:min-h-[300px]"
         src={movie.poster_path}
         alt={movie.title}
       />
-      <p className="py-1 font-bold">
-        {movie.title} ({movie.release_date.split('-')[0]})
-      </p>
+      <p className="py-1 font-bold">{movieTitle} </p>
     </div>
   )
 }
