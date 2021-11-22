@@ -8,6 +8,7 @@
     "url": "https://mrahil.me"
   },
   "scripts": {
+    "start": "vite",
     "dev": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview",
