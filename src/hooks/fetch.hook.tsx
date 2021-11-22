@@ -5,7 +5,7 @@ import UnknownImage from 'components/unknown.svg'
 export type RequestStatus = 'init' | 'loading' | 'failed' | 'success'
 
 const useImageFetch = (src: string): { image: string; loading: boolean } => {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(src ? true : false)
   const [base64, setBase64] = useState(
     src ? `https://image.tmdb.org/t/p/w92/${src}` : UnknownImage
   )

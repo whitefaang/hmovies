@@ -1,7 +1,7 @@
 import Movie from 'components/movie.component'
 import React, { ReactElement } from 'react'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import Link from 'components/link.components'
 import { uiSelect } from 'store/ui.slice'
 import Empty from './empty.svg'
 
@@ -19,7 +19,7 @@ export default function MyMovies(): ReactElement {
         <p className="text-center">
           You havent rated any movies yet.
           <Link to="/" className="px-2">
-            <span className="text-primary">Get Started.</span>
+            Get Started.
           </Link>
         </p>
       </div>

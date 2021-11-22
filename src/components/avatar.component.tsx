@@ -25,7 +25,6 @@ export default function Avatar() {
       </Menu.Button>
       <Transition
         as={Fragment}
-        // className=""
         enter="transition ease-out duration-100"
         enterFrom="transform opacity-0 scale-95"
         enterTo="transform opacity-100 scale-100"
@@ -33,7 +32,7 @@ export default function Avatar() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 mt-2 min-w-[200px] bg-surface-muted rounded-sm rounded-xl origin-top-right focus:outline-none">
+        <Menu.Items className="absolute right-0 mt-2 min-w-[200px] bg-surface-muted rounded-xl origin-top-right focus:outline-none">
           <div className="py-1 px-3 text-sm text-color-muted right-arrow-top">
             <Menu.Item>
               <NavLink
