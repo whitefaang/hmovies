@@ -4,8 +4,6 @@ A simple movie dashboard, with frontend-only solution for rating movies. [Demo](
 
 ## What is inside?
 
-## Getting Started
-
 This project uses many tools like:
 
 - [ReactJS](https://reactjs.org)
@@ -14,6 +12,7 @@ This project uses many tools like:
 - [Jest](https://jestjs.io)
 - [Testing Library](https://testing-library.com)
 - [Tailwindcss](https://tailwindcss.com)
+- [Styled Components](https://styled-components.com/)
 - [Eslint](https://eslint.org)
 - [Prettier](https://prettier.io)
 
