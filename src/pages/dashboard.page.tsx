@@ -9,6 +9,13 @@ export default function Dashboard(): ReactElement {
   const popular = useMovieTopRated()
 
   useEffect(() => {
+    document.ontouchmove = () => {
+      const documentHeight = document.body.scrollHeight
+      const currentScroll = window.scrollY + window.innerHeight
+      if (currentScroll === documentHeight) {
+        popular.next()
+      }
+    }
     document.onscroll = () => {
       const documentHeight = document.body.scrollHeight
       const currentScroll = window.scrollY + window.innerHeight
