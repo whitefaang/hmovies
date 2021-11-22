@@ -1,8 +1,10 @@
-# React Tailwindcss Boilerplate build with Vite
+# H-Movies
 
-This is a [ReactJS](https://reactjs.org) + [Vite](https://vitejs.dev) boilerplate to be used with [Tailwindcss](https://tailwindcss.com).
+A simple movie dashboard, with frontend-only solution for rating movies. [Demo](https://determined-wright-3fb8e0.netlify.app/).
 
 ## What is inside?
+
+## Getting Started
 
 This project uses many tools like:
 
@@ -15,21 +17,17 @@ This project uses many tools like:
 - [Eslint](https://eslint.org)
 - [Prettier](https://prettier.io)
 
-## Getting Started
+### Highlights
 
-### Install
+- Lazyload of poster / cover photos
+- Infinite scroll on desktop
+- Redux store used to manage user ratings
+- Styled components used for dumb components
+- TailwindCSS included for faster dev time + better dev experience
+- Used TMDB for apis
+- Used Netlify for deployment
 
-Create the project.
-
-```bash
-npx degit joaopaulomoraes/reactjs-vite-tailwindcss-boilerplate my-app
-```
-
-Access the project directory.
-
-```bash
-cd my-app
-```
+### Setup
 
 Install dependencies.
 
