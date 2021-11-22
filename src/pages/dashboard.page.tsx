@@ -53,6 +53,7 @@ export default function Dashboard(): ReactElement {
           return <Movie key={movie.id} movie={movie} />
         })}
       </div>
+
       {popular.status === 'loading' && (
         <div
           data-testid="loader"
@@ -68,6 +69,16 @@ export default function Dashboard(): ReactElement {
             ))}
         </div>
       )}
+      <p
+        className="lg:hidden font-bold text-center text-primary cursor-pointer"
+        onClick={() => {
+          if (popular.status !== 'loading') {
+            popular.next()
+          }
+        }}
+      >
+        Load More
+      </p>
     </>
   )
 }
