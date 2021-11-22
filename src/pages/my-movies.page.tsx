@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { uiSelect } from 'store/ui.slice'
+import Empty from './empty.svg'
 
 export default function MyMovies(): ReactElement {
   const myMovies = useSelector(uiSelect.getMyMovies)
@@ -11,7 +12,7 @@ export default function MyMovies(): ReactElement {
     return (
       <div className="flex flex-col flex-1 gap-y-10 justify-center items-center text-xl">
         <img
-          src="/src/public/undraw_empty_re_opql.svg"
+          src={Empty}
           alt="You havent rated any movies yet"
           className="mx-auto w-8/12 xl:w-5/12"
         />
