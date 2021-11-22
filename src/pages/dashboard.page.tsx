@@ -8,15 +8,15 @@ export default function Dashboard(): ReactElement {
   // const movies = useMovieSearch()
   const popular = useMovieTopRated()
 
-  // useEffect(() => {
-  //   document.onscroll = () => {
-  //     const documentHeight = document.body.scrollHeight
-  //     const currentScroll = window.scrollY + window.innerHeight
-  //     if (currentScroll === documentHeight) {
-  //       popular.next()
-  //     }
-  //   }
-  // }, [popular])
+  useEffect(() => {
+    document.onscroll = () => {
+      const documentHeight = document.body.scrollHeight
+      const currentScroll = window.scrollY + window.innerHeight
+      if (currentScroll === documentHeight) {
+        popular.next()
+      }
+    }
+  }, [popular])
 
   if (popular.status === 'failed') {
     return (
