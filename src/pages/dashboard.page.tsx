@@ -10,7 +10,7 @@ export default function Dashboard(): ReactElement {
 
   useEffect(() => {
     document.ontouchmove = () => {
-      const documentHeight = document.body.scrollHeight
+      const documentHeight = document.body.scrollHeight - 100
       const currentScroll = window.scrollY + window.innerHeight
       if (currentScroll === documentHeight) {
         popular.next()
